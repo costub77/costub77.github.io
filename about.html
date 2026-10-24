@@ -1,0 +1,682 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me</title>
+
+<style>
+:root {
+    --primary: #2e7d32;
+    --secondary: #006cc6;
+    --bg: #f1f1f1;
+    --card: #ffffff;
+    --text: #333;
+    --muted: #666;
+    --folder-bg: #f0f7ff;
+    --folder-border: #c2d9ff;
+}
+
+/* Base */
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Top bar */
+.top-bar {
+    position: sticky;
+    top: 0;
+    background: var(--card);
+    padding: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.back-button {
+    background: var(--primary);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 16px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin: 24px 0;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+/* Section cards */
+.section {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+p {
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.highlight {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Info list */
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-item {
+    font-size:18px;
+    padding: 15px 1;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 600;
+    display: block;
+}
+
+/* Skills */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill {
+    background: #e0f2f1;
+    color: #00695c;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 18px;
+}
+
+/* Main dropdown */
+.dropdown {
+    background: var(--card);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.dropdown-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-header span {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-header.active span {
+    transform: rotate(180deg);
+}
+
+/* 🔥 Scroll-friendly dropdown */
+.dropdown-content {
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 0.4s ease;
+    padding: 0 16px;
+}
+
+.dropdown-content.open {
+    max-height: 60vh;
+    padding-bottom: 16px;
+}
+
+/* Sub dropdown */
+.sub-item {
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.sub-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sub-header span {
+    transition: transform 0.3s ease;
+}
+
+.sub-header.active span {
+    transform: rotate(180deg);
+}
+
+.sub-content {
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 0.35s ease, padding 0.3s ease;
+    padding: 0 16px;
+    
+    background: linear-gradient(135deg, #f8fbff, #eef5ff);
+    border-left: 4px solid var(--secondary);
+    border-radius: 0 0 12px 12px;
+}
+
+.sub-content.open {
+    max-height: 40vh;
+    padding: 16px;
+}
+
+
+
+/* Folder Structure Styles */
+.folder-item {
+    background: var(--folder-bg);
+    border: 2px solid var(--folder-border);
+    border-radius: 8px;
+    margin: 8px 0;
+    overflow: hidden;
+}
+
+.folder-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--secondary);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.folder-header::before {
+    content: "📁 ";
+    margin-right: 8px;
+}
+
+.folder-header span {
+    transition: transform 0.3s ease;
+}
+
+.folder-header.active span {
+    transform: rotate(90deg);
+}
+
+.folder-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: white;
+}
+
+.folder-content.open {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+/* Song List */
+.song-list {
+    padding: 12px 16px;
+}
+
+.song-item {
+    padding: 8px 12px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.song-item:hover {
+background: linear-gradient(94deg,rgba(130, 234, 255, 1) 55%, rgba(255, 255, 255, 1) 100%);
+    transform: scale(1.02);
+}
+
+.song-item::before {
+    content: "▶";
+    margin-right: 10px;
+    font-size: 12px;
+    color: blue;
+    transition: transform 0.2s ease;
+}
+
+.song-item:hover::before {
+    transform: scale(1.2);
+}
+
+
+
+/* Category headers */
+.category-title {
+    font-weight: 600;
+    color: var(--primary);
+    margin: 12px 0 6px 0;
+    padding-left: 8px;
+    font-size: 15px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+    margin: 24px 0;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+    .header h1 { font-size: 32px; }
+    .subtitle { font-size: 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+</div>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Kaustubh Ramteke</h1>
+        <div class="subtitle">Computer Engineer</div>
+    </div>
+
+        <div class="section">
+        <h3>Basic Information</h3>
+        <ul class="info-list">
+            <li class="info-item"><span class="info-label">Full Name</span>Kaustubh Prabhakar Ramteke</li>
+            <li class="info-item"><span class="info-label">Hometown</span>Amravati, Maharashtra, India</li>
+            <li class="info-item"><span class="info-label">Current city</span>Nagpur, Maharashtra, India</li>
+            <li class="info-item"><span class="info-label">Languages spoken</span>English, Marathi, Hindi</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h3>Technical Skills</h3>
+        <div class="skills">
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">Java</span>
+            <span class="skill">Python</span>
+            <span class="skill">MySQL</span>
+            <span class="skill">Data Structures & Algorithms</span>
+            <span class="skill">Object Oriented Programming</span>
+        </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="dropdown">
+        <button class="dropdown-header">🎓 Education <span>▼</span></button>
+        <div class="dropdown-content">
+
+            <div class="sub-item">
+                <button class="sub-header">BE – Computer Science & Engineering <span>▼</span></button>
+                <div class="sub-content">
+                    <p>Shree Hanuman Vyayam Prasarak Mandal's College of Engineering & Technology, Amravati, Maharashtra, India</p>
+                    <p>2023 · CGPA: 8.35</p>
+                </div>
+            </div>
+
+            <div class="sub-item">
+                <button class="sub-header">Diploma – Computer Engineering <span>▼</span></button>
+                <div class="sub-content">
+                    <p>Government Polytechnic, Amravati, Maharashtra, India</p>
+                    <p>2020 · 79.13%</p>
+                </div>
+            </div>
+
+            <div class="sub-item">
+                <button class="sub-header">SSC (10th Standard) <span>▼</span></button>
+                <div class="sub-content">
+                    <p>St. Francis High School, Amravati, Maharashtra, India</p>
+                    <p>2017 · 86.20%</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- INTERESTS -->
+    <div class="dropdown">
+        <button class="dropdown-header">🎯 Interests <span>▼</span></button>
+        <div class="dropdown-content">
+
+            <div class="sub-item">
+                <button class="sub-header">🐼 Anime & Cartoon <span>▼</span></button>
+                <div class="sub-content">
+                    <p>Case closed/ Detective Conan</p>
+                    <p>Naruto</p>
+                    <p>Death Note</p>
+                    <p>Monster</p>
+                    <p>Ninja Hattori</p>
+                    <p>Perman</p>
+                    <p>Scooby-Doo</p>
+                    <p>Richie Rich</p>
+                    <p>The grim adventures of billy & mandy</p>
+                </div>
+            </div>
+
+<div class="sub-item">
+                <button class="sub-header">🍿 Movies <span>▼</span></button>
+                <div class="sub-content">
+                    <p>The Godfather I & II</p>
+                    <p>Inception</p>
+                    <p>3 Idiots</p>
+                    <p>Student of the Year</p>
+                    <p>Casino Royale</p>
+                    <p>Skyfall</p>
+                    <p>Mission Impossible - Ghost Protocol</p>
+                    <p>Mission Impossible - Rogue Nation</p>
+                    <p>Need for Speed</p>
+                    <p>Maharaja</p>
+                    <p>Sooryavansham</p>
+                    <p>The Shawshank Redemption</p>
+                </div>
+            </div>
+
+        
+
+            <div class="sub-item">
+                <button class="sub-header">📺 TV Series <span>▼</span></button>
+                <div class="sub-content">
+                    <p>Taarak Mehta Ka Ooltah Chashmah</p>
+                    <p>Friends</p>
+                    <p>HIMYM</p>
+                    <p>Brooklyn Nine-Nine</p>
+                    <p>Community</p>
+                    <p>Suits</p>
+                </div>
+            </div>
+
+            <div class="sub-item">
+                <button class="sub-header">🎵 Music <span>▼</span></button>
+                <div class="sub-content">
+                    <!-- Your EXACT order starts here -->
+                    
+                    <div class="folder-item">
+                        <button class="folder-header">Soundtracks & Classicals<span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">beethoven 5th symphony</div>
+                        <div class="song-item">marriage of figaro</div>
+                        <div class="song-item">fur elise</div>
+                        <div class="song-item">the brothers mourn</div>
+                        <div class="song-item">the godfather waltz</div>
+                        
+                        <div class="song-item">maharaja ost</div>
+                        <div class="song-item">sivaji the boss bgm</div>
+                        <div class="song-item">champions league theme</div>
+                        <div class="song-item">detective conan main theme</div>
+                        
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <!-- English Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">English <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">lose yourself</div>
+                                <div class="song-item">roads untraveled</div>
+                                <div class="song-item">fever fever – melody club</div>
+                                <div class="song-item">bloody mary</div>
+                                <div class="song-item">bob's beat</div>
+                                <div class="song-item">havana</div>
+                                <div class="song-item">temparature (sean paul)</div>
+                                <div class="song-item">gangsters paradise</div>
+                                <div class="song-item">cradles</div>
+                                <div class="song-item">die with a smile</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hindustani Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Hindustani <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">chand sifarish</div>
+                                <div class="song-item">mere mehboob qayamat hogi</div>
+                                <div class="song-item">dhoom machale</div>
+                                <div class="song-item">ishq wala love</div>
+                                <div class="song-item">kukkad</div>
+                                <div class="song-item">the disco song</div>
+                                <div class="song-item">dus bahane</div>
+                                <div class="song-item">badtameez dil</div>
+                                <div class="song-item">bhool bhulaiya</div>
+                                <div class="song-item">chennai express</div>
+                                <div class="song-item">one two three four</div>
+                                <div class="song-item">chhomantar</div>
+                                <div class="song-item">early morning</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Punjabi Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Punjabi <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">ishaq tera tadpave</div>
+                                <div class="song-item">pasoori (coke studio)</div>
+                                <div class="song-item">pagol</div>
+                                <div class="song-item">panjab</div>
+                                <div class="song-item">syl</div>
+                                <div class="song-item">295</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Marathi Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Marathi <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">pratham namo gautama</div>
+                                <div class="song-item">uddharli koti kule</div>
+                                <div class="song-item">mauli mauli (ajay atul)</div>
+                                <div class="song-item">aala baburao</div>
+                                <div class="song-item">apsara aali</div>
+                                <div class="song-item">kombadi parali</div>
+                                <div class="song-item">bai wadyavr ya</div>
+                                <div class="song-item">chandra</div>
+                                <div class="song-item">varyavarti gandh pasarla</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tamil Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Tamil <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">surangani</div>
+                                <div class="song-item">appadi podu</div>
+                                <div class="song-item">idli chutney (sean roldan)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Malayalam Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Malayalam <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">aadharanjali</div>
+                                <div class="song-item">illuminati</div>
+                                <div class="song-item">armadham</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bhojpuri Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Bhojpuri <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">khaiba mehari</div>
+                                <div class="song-item">chhalakta hamro jawaniya</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bengali Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Bengali <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">char chokka hoi hoi</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Portuguese Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Portuguese <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">malemolencia</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Spanish Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Spanish <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">bailando</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- French Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">French <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">butterfly (superbus)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Italian Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Italian <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">bella ciao</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Japanese Folder -->
+                    <div class="folder-item">
+                        <button class="folder-header">Japanese <span>▶</span></button>
+                        <div class="folder-content">
+                            <div class="song-list">
+                                <div class="song-item">alumina (nightmare)</div>
+                                <div class="song-item">kimi ga ireba</div>
+                                <div class="song-item">flow (colors)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Your EXACT order ends here -->
+                    
+                </div>
+            </div>
+
+            
+
+    <div class="footer">© 2026 Kaustubh Ramteke</div>
+
+</div>
+
+<script>
+// Handle dropdowns
+document.querySelectorAll(".dropdown-header, .sub-header").forEach(btn => {
+    btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+        btn.nextElementSibling.classList.toggle("open");
+    });
+});
+
+// Handle folder toggles
+document.querySelectorAll(".folder-header").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        btn.classList.toggle("active");
+        const content = btn.nextElementSibling;
+        content.classList.toggle("open");
+        
+        // Rotate arrow
+        const arrow = btn.querySelector('span');
+        if (btn.classList.contains('active')) {
+            arrow.textContent = '▼';
+        } else {
+            arrow.textContent = '▶';
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Programming - Course Syllabus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 16px 16px 80px 16px; /* Added bottom padding for footer */
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: #1a237e;
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .unit-section {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .unit-section:last-child {
+            border-bottom: none;
+        }
+        
+        .unit-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .unit-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .unit-number {
+            background: #1a237e;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .unit-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a237e;
+            line-height: 1.3;
+        }
+        
+        .unit-content {
+            padding-left: 0;
+        }
+        
+        .unit-content h4 {
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 20px 0 12px 0;
+        }
+        
+        .unit-content h4:first-of-type {
+            margin-top: 0;
+        }
+        
+        .unit-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .unit-content ul li {
+            padding: 10px 16px;
+            margin-bottom: 8px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        
+        .unit-section:nth-child(even) .unit-content ul li {
+            background: #f8f9fa;
+        }
+        
+        .unit-content ul li strong {
+            color: #1a237e;
+            font-weight: 600;
+        }
+        
+        .unit-content p {
+            padding: 10px 16px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        
+        .unit-section:nth-child(even) .unit-content p {
+            background: #f8f9fa;
+        }
+        
+        /* Fixed Footer Styles */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            background: #1a237e;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            background: rgba(26, 35, 126, 0.98);
+        }
+        
+        .footer span {
+            display: inline-block;
+            animation: gentlePulse 2s infinite;
+        }
+        
+        @keyframes gentlePulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 600px) {
+            body {
+                padding: 8px 8px 70px 8px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .unit-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .unit-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                border-radius: 8px;
+            }
+            
+            .unit-title {
+                font-size: 1.3rem;
+            }
+            
+            .unit-content ul li {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .footer {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Small phones */
+        @media (max-width: 380px) {
+            .unit-title {
+                font-size: 1.1rem;
+            }
+            
+            .unit-content ul li {
+                padding: 10px;
+            }
+        }
+        
+        /* Better touch targets for mobile */
+        .unit-content ul li {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Add a subtle fade effect when scrolling near bottom */
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to top, rgba(26, 35, 126, 0.3), transparent);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PYTHON PROGRAMMING</h1>
+            <p>Course Code: 314004 | Semester: Fourth</p>
+            <p>Computer Engineering</p>
+        </header>
+        
+        <!-- Unit 1 -->
+        <div class="unit-section">
+            <div class="unit-header">
+                <div class="unit-number">1</div>
+                <div class="unit-title">Introduction to Python and Control Flow Statements</div>
+            </div>
+            <div class="unit-content">
+                <h4>📚 Learning Content</h4>
+                <ul>
+                    <li><strong>Introduction:</strong> Features, History and Applications of Python, Python IDEs<br>
+                    <strong>Python building blocks:</strong> Indentation, Identifiers, Variable, Comments, Keywords<br>
+                    <strong>Basic input output:</strong> input(), print()<br>
+                    <strong>Operators:</strong> Arithmetic, Relational, Assignment, Logical, Bitwise, Membership and Identity<br>
+                    <strong>Control flow:</strong> if, if-else, if-elif-else, nested if, while, for, nested loops, continue, pass, break, else</li>
+                </ul>
+                
+                <h4>👨‍🏫 Teaching Methods</h4>
+                <p>Chalk-Board • Demonstration • Presentations</p>
+            </div>
+        </div>
+        
+        <!-- Unit 2 -->
+<div class="unit-section">
+    <div class="unit-header">
+        <div class="unit-number">2</div>
+        <div class="unit-title">Data Structures in Python</div>
+    </div>
+    <div class="unit-content">
+        <h4>📚 Learning Content</h4>
+        <ul>
+            <li>
+                <strong>List:</strong> Defining, accessing, updating, deleting, operations, built-in methods<br>
+                <strong>Tuple:</strong> Defining, accessing, operations, built-in methods<br>
+                <strong>Set:</strong> Defining, accessing, deleting, operations, built-in methods<br>
+                <strong>Dictionary:</strong> Defining, accessing, updating, deleting, operations, built-in methods
+            </li>
+        </ul>
+        
+        <h4>👨‍🏫 Teaching Methods</h4>
+        <p>Chalk-Board • Demonstration • Presentations • Hands-on</p>
+    </div>
+</div>
+
+<!-- Unit 3 -->
+<div class="unit-section">
+    <div class="unit-header">
+        <div class="unit-number">3</div>
+        <div class="unit-title">Functions, Modules and Packages</div>
+    </div>
+    <div class="unit-content">
+        <h4>📚 Learning Content</h4>
+        <ul>
+            <li>
+                <strong>Functions:</strong> Defining, calling, arguments, return, scope, lambda functions<br>
+                <strong>Modules:</strong> Creating user modules, importing, built-in modules, namespace<br>
+                <strong>Packages:</strong> Creating packages, importing, built-in packages, PIP installation
+            </li>
+        </ul>
+        
+        <h4>👨‍🏫 Teaching Methods</h4>
+        <p>Chalk-Board • Demonstration • Presentations • Hands-on</p>
+    </div>
+</div>
+
+<!-- Unit 4 -->
+<div class="unit-section">
+    <div class="unit-header">
+        <div class="unit-number">4</div>
+        <div class="unit-title">Object Oriented Programming</div>
+    </div>
+    <div class="unit-content">
+        <h4>📚 Learning Content</h4>
+        <ul>
+            <li>
+                <strong>Classes & Objects:</strong> Creating class, creating object<br>
+                <strong>Constructors:</strong> Parameterized & Non-Parameterized, self parameter<br>
+                <strong>Polymorphism:</strong> Method Overloading and Overriding<br>
+                <strong>Encapsulation:</strong> Data Hiding / Abstraction<br>
+                <strong>Inheritance:</strong> Single, Multiple, Multilevel
+            </li>
+        </ul>
+        
+        <h4>👨‍🏫 Teaching Methods</h4>
+        <p>Chalk-Board • Demonstration • Presentations • Hands-on</p>
+    </div>
+</div>
+
+<!-- Unit 5 -->
+<div class="unit-section">
+    <div class="unit-header">
+        <div class="unit-number">5</div>
+        <div class="unit-title">Built-in Packages & Applications</div>
+    </div>
+    <div class="unit-content">
+        <h4>📚 Learning Content</h4>
+        <ul>
+            <li>
+                <strong>Pandas:</strong> Series, DataFrames, Read CSV<br>
+                <strong>GUI with tkinter:</strong> Entry, Label, Button, RadioButton, Checkbutton, Simple applications<br>
+                <strong>MySQL Connection:</strong> mysql-connector, cursor, execute, fetchall, database programs
+            </li>
+        </ul>
+        
+        <h4>👨‍🏫 Teaching Methods</h4>
+        <p>Chalk-Board • Flipped Classroom • Demonstration • Presentations</p>
+    </div>
+</div>
+    
+    <!-- Fixed Footer -->
+    <div class="footer">
+        <span>© 2026 Kaustubh Ramteke </span>
+    </div>
+</body>
+</html>

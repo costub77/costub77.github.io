@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Buddhist Mahar Surnames Vidarbha</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg1: #FF2C00;
+    --bg2: #ff6b00;
+    --bg3: #cc5500;
+
+    --glass: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.5);
+
+    --text-dark: #2b2b2b;
+    --text-light: #ffffff;
+
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Poppins', sans-serif;
+    --font-condensed: 'Oswald', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 30px;
+    color: var(--text-light);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.header-image-container {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.5);
+    overflow: hidden;
+}
+
+.header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: var(--font-condensed);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    margin: 10px 0 20px;
+    letter-spacing: 0.1em;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.column {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border-radius: 22px;
+    padding: 20px 15px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    opacity: 0.7;
+    transition: 0.4s ease;
+}
+
+li.auto-hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateX(8px) scale(1.02);
+    opacity: 1;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    opacity: 0.9;
+    letter-spacing: 0.1em;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔊 BACKGROUND MUSIC -->
+<audio id="bgMusic" autoplay loop>
+    <source src="https://raw.githubusercontent.com/kaustubh77rm/kaustubh77rm.github.io/main/music/the-disco-song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <div class="header-container">
+        <div class="header-image-container">
+            <img src="https://raw.githubusercontent.com/kaustubh77rm/kaustubh77rm.github.io/main/image/bhante1.png" class="header-image">
+        </div>
+        <h1>Last Names in Vidarbha Region</h1>
+    </div>
+
+    <div class="subtitle">Buddhist Mahar Community</div>
+
+    <div class="grid" id="grid"></div>
+
+    <footer>© Kaustubh Ramteke</footer>
+</div>
+
+<script>
+// 🎵 Auto-play music with user gesture fallback
+const bgMusic = document.getElementById("bgMusic");
+
+// Set volume
+bgMusic.volume = 0.4;
+
+// Try to play automatically
+function playAudio() {
+    const playPromise = bgMusic.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            console.log("Audio playing successfully");
+        }).catch(error => {
+            console.log("Auto-play prevented. Will play on user interaction.");
+            // Add a visual cue for users to click
+            document.body.style.cursor = "pointer";
+            document.title = "▶️ Click to play music - Buddhist Mahar Surnames";
+            
+            // Play on first user interaction
+            const playOnInteraction = () => {
+                bgMusic.play();
+                document.body.style.cursor = "default";
+                document.title = "Buddhist Mahar Surnames Vidarbha";
+                // Remove event listeners after first play
+                document.removeEventListener('click', playOnInteraction);
+                document.removeEventListener('touchstart', playOnInteraction);
+                document.removeEventListener('keydown', playOnInteraction);
+            };
+            
+            document.addEventListener('click', playOnInteraction);
+            document.addEventListener('touchstart', playOnInteraction);
+            document.addEventListener('keydown', playOnInteraction);
+        });
+    }
+}
+
+// Start playing when page is ready
+window.addEventListener('load', playAudio);
+
+// Also try when page becomes visible
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && bgMusic.paused) {
+        playAudio();
+    }
+});
+
+// Surnames
+const surnames = [
+"WANKHADE","INGLE","ABHYANKAR","MOHOD","MAHORE","BHATKAR","GAIKWAD","TAYADE",
+"KHANDARE","DAMODAR","SONONE","SHIRSAT","GAWAI","VIRGHAT","WARGHAT","DONGRE",
+"WANKHEDE","WANJARI","MORE","INGOLE","KAMBLE","BHAGAT","BHITKAR","RAIPURE",
+"NAGRALE","THAWARE","THOOL","MOON","NAIK","NAKHALE","KHADSE","SHAMBHARKAR",
+"PATIL","MESHRAM","GAJBHIYE","RAMTEKE","SHENDE","KHOBRAGADE","MOTGHARE",
+"BORKAR","BANSOD","RANGARI","WASNIK","LANJEWAR","UKE","NAGDEVE",
+"GADPAYALE","MANWATKAR","RAUT","SAHARE","SHAHARE","BADOLE","BHALEKAR",
+"DHAMGAYE","TEMBHURNE","SAKHARE","KOCHE","UNDIRWADE","INDURKAR",
+"NANDESHWAR","JAMBHULKAR","JANBANDHU","WALDE","SANGOLE"
+];
+
+const columns = 4;
+const perColumn = Math.ceil(surnames.length / columns);
+const grid = document.getElementById("grid");
+const columnLiElements = [];
+
+for (let i = 0; i < columns; i++) {
+    const col = document.createElement("div");
+    col.className = "column";
+    const ul = document.createElement("ul");
+    const items = [];
+
+    surnames.slice(i * perColumn, (i + 1) * perColumn).forEach(name => {
+        const li = document.createElement("li");
+        li.textContent = name;
+        ul.appendChild(li);
+        items.push(li);
+    });
+
+    col.appendChild(ul);
+    grid.appendChild(col);
+    columnLiElements.push(items);
+}
+
+let index = 0;
+const maxRows = Math.max(...columnLiElements.map(c => c.length));
+
+function animate() {
+    columnLiElements.forEach(col =>
+        col.forEach(li => li.classList.remove("auto-hover"))
+    );
+
+    columnLiElements.forEach(col => {
+        if (col[index]) col[index].classList.add("auto-hover");
+    });
+
+    index = (index + 1) % maxRows;
+    setTimeout(animate, 1000);
+}
+
+setTimeout(animate, 800);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Column</title>
+
+<style>
+:root {
+    --primary: #2e7d32;
+    --secondary: #006cc6;
+    --bg: #f1f1f1;
+    --card: #ffffff;
+    --text: #333;
+    --muted: #666;
+}
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--muted);
+    box-shadow: 0 -7px 16px rgba(0,0,0,0.5);
+    z-index: 200;
+}
+
+/* Prevent content from hiding behind fixed footer */
+
+
+/* Base */
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding-bottom: 50px;
+}
+
+/* Top bar */
+.top-bar {
+    position: sticky;
+    top: 0;
+    background: var(--card);
+    padding: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.back-button {
+    background: var(--primary);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 16px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin: 24px 0;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+/* Date card */
+.date-section {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.date-section h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: var(--secondary);
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+}
+
+/* Lists */
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+}
+
+.link-list li {
+    margin-bottom: 14px;
+}
+
+/* OLD BUTTON STYLE */
+.button-57 {
+    display: inline-block;
+    position: relative;
+    padding: 18px 22px;
+    border: 1px solid #18181a;
+    background-color: #fff;
+    color: #18181a;
+    font-size: 18px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+.button-57 span:first-child {
+    position: relative;
+    z-index: 10;
+}
+
+.button-57 span:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    opacity: 0;
+    transform: translate(-50%, 200%);
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+}
+
+.button-57:after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary);
+    transform-origin: bottom center;
+    transform: skewY(9deg) scaleY(0);
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 50;
+}
+
+.button-57:hover:after {
+    transform: skewY(9deg) scaleY(2);
+}
+
+.button-57:hover span:last-child {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+    .header h1 { font-size: 32px; }
+    .subtitle { font-size: 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+</div>
+
+<div class="container">
+
+    <div class="header">
+        <h1>My Column</h1>
+        <div class="subtitle">Thoughts, stories & experiences</div>
+    </div>
+
+<div class="date-section">
+        <h2>March 29, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="16_the_one_with_abhijeet.html" class="button-57">
+                    <span>The one with abhijeet dada</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+	
+	<div class="date-section">
+        <h2>March 28, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="15_the_one_with_amtinfo.html" class="button-57">
+                    <span>The one with amravati info</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+	
+	<div class="date-section">
+        <h2>March 1, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="14_the_one_with_fooditems.html" class="button-57">
+                    <span>The one with food items</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+<div class="date-section">
+        <h2>Februrary 28, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="13_the_one_with_factory.html" class="button-57">
+                    <span>The one with factory ideas</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+<div class="date-section">
+        <h2>Februrary 13, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="12_the_one_with_amravati.html" class="button-57">
+                    <span>The one with amravati</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="date-section">
+        <h2>Februrary 12, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="11_the_one_with_the_reception.html" class="button-57">
+                    <span>The one with the reception (shorts)</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+<div class="date-section">
+        <h2>Februrary 6, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="10_the_one_with_amrutam26.html" class="button-57">
+                    <span>The one with amrutam26 (video clips)</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- 🔥 NEW ENTRY -->
+    <div class="date-section">
+        <h2>January 30, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="09_the_one_with_amrutam26.html" class="button-57">
+                    <span>The one with amrutam26 (photos)</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="date-section">
+        <h2>January 23, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="08_the_one_with_priyadarshiniPics.html" class="button-57">
+                    <span>The one with the priyadarshini photos</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="date-section">
+        <h2>January 19, 2026</h2>
+        <ul class="link-list">
+            <li>
+                <a href="07_the_one_with_priyadarshini.html" class="button-57">
+                    <span>The one with the priyadarshini</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="date-section">
+        <h2>March 19–23, 2025</h2>
+        <ul class="link-list">
+            <li>
+                <a href="06_the_one_with_pune.html" class="button-57">
+                    <span>The one with pune</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="date-section">
+        <h2>October 16, 2024</h2>
+        <ul class="link-list">
+            <li>
+                <a href="districts_de_idarbha/05_the_one_with_vidarbha_map.html" class="button-57">
+                    <span>The one with vidarbha map</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="date-section">
+        <h2>October 4, 2024</h2>
+        <ul class="link-list">
+            <li>
+                <a href="04_the_one_where_i_got_interview_result.html" class="button-57">
+                    <span>The one where i got interview result</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="date-section">
+        <h2>September 21, 2024</h2>
+        <ul class="link-list">
+            <li>
+                <a href="02_the_one_with_vidarbha.html" class="button-57">
+                    <span>The one with vidarbha</span>
+                    <span>Open</span>
+                </a>
+            </li>
+            <li>
+                <a href="03_the_one_with_prep.html" class="button-57">
+                    <span>The one with my interview preparation</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+	<div class="date-section">
+        <h2>September 19, 2024</h2>
+        <ul class="link-list">
+            <li>
+                <a href="01_buddhistlastnames.html" class="button-57">
+                    <span>The one where i made list of buddhist surnames</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="date-section">
+        <h2>September 18, 2024</h2>
+        <ul class="link-list">
+            <li>
+                <a href="01_the_one_where_i_got_started.html" class="button-57">
+                    <span>The one where i got started</span>
+                    <span>Open</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div class="footer">
+    © Kaustubh Ramteke
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,197 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Morning</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:#0f172a;
+  font-family:'Segoe UI',system-ui;
+  color:#f1f5f9;
+}
+
+.hero{
+  text-align:center;
+  padding:2rem 1rem 1rem;
+}
+
+h1{
+  font-size:2.2rem;
+  background:linear-gradient(135deg,#fff,#d9c8ff,#b692f0);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.sub{
+  margin-top:0.6rem;
+  opacity:0.8;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:1.2rem;
+  padding:2rem 1.5rem;
+  max-width:1400px;
+  margin:auto;
+}
+
+.gallery img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:20px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.03);
+}
+
+/* button */
+.load-more-wrapper{
+  text-align:center;
+  margin:1rem 0 3rem;
+}
+
+.load-more-btn{
+  background:#1e293b;
+  color:white;
+  padding:10px 25px;
+  border-radius:40px;
+  cursor:pointer;
+}
+
+/* lightbox */
+.lightbox{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:85%;
+  border-radius:20px;
+}
+
+/* CLOSE BUTTON */
+.close-btn{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:2rem;
+  cursor:pointer;
+  background:rgba(0,0,0,0.6);
+  padding:5px 12px;
+  border-radius:50%;
+}
+
+.close-btn:hover{
+  background:red;
+}
+
+.counter-status{
+  text-align:center;
+  margin-bottom:10px;
+  font-size:0.9rem;
+}
+
+.end-message{
+  text-align:center;
+  color:#aaa;
+  margin-bottom:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <h1>🌿 Wedding Morning 🌅</h1>
+  <div class="sub">moments | soft memories</div>
+</div>
+
+<div class="gallery" id="gallery"></div>
+
+<div class="load-more-wrapper">
+  <button class="load-more-btn" id="loadMoreBtn">Load More Photos</button>
+</div>
+
+<div class="counter-status" id="counterStatus"></div>
+<div class="end-message" id="endMessage"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="close-btn" id="closeBtn">✖</span>
+  <img id="lightbox-img">
+</div>
+
+<script>
+
+const images = [ "https://i.ibb.co/27y85d4W/dongothunder2026-02-28-19h42m54s700.png", "https://i.ibb.co/n8wKQYk1/dongothunder2026-02-28-19h42m41s361.png", "https://i.ibb.co/WvrrL7Zk/dongothunder2026-02-28-19h42m35s119.png", "https://i.ibb.co/4nrdcdnQ/dongothunder2026-02-28-19h42m33s177.png", "https://i.ibb.co/TMQJ7CQG/dongothunder2026-02-28-19h42m31s906.png", "https://i.ibb.co/TqwDGwxV/dongothunder2026-02-28-19h42m30s341.png", "https://i.ibb.co/WvNGCF1Z/dongothunder2026-02-28-19h42m16s755.png", "https://i.ibb.co/ynJPB3St/dongothunder2026-02-28-19h42m06s252.png", "https://i.ibb.co/kssgjt9y/dongothunder2026-02-28-19h42m04s604.png", "https://i.ibb.co/Xx5qfZPV/dongothunder2026-02-28-19h41m56s478.png", "https://i.ibb.co/WNZgmjKF/dongothunder2026-02-28-19h41m50s119.png", "https://i.ibb.co/5gL1sbsQ/dongothunder2026-02-28-19h41m48s526.png", "https://i.ibb.co/tMtyVHHZ/dongothunder2026-02-28-19h41m45s629.png", "https://i.ibb.co/60ZVZVNJ/dongothunder2026-02-28-19h41m41s960.png", "https://i.ibb.co/qYhkR1Kv/dongothunder2026-02-28-19h41m39s574.png", "https://i.ibb.co/XfpdLjKs/dongothunder2026-02-28-19h41m37s691.png", "https://i.ibb.co/CK3LgHHL/dongothunder2026-02-28-19h41m36s661.png", "https://i.ibb.co/QvKrQ06V/dongothunder2026-02-28-19h41m35s202.png", "https://i.ibb.co/8gP2zFbf/dongothunder2026-02-28-19h47m44s865.png", "https://i.ibb.co/d0shwMCt/dongothunder2026-02-28-19h47m36s527.png", "https://i.ibb.co/dJGyL0vw/dongothunder2026-02-28-19h47m34s945.png", "https://i.ibb.co/VcsvBWGh/dongothunder2026-02-28-19h47m27s961.png", "https://i.ibb.co/n8PsZGyk/dongothunder2026-02-28-19h47m23s453.png", "https://i.ibb.co/N62Y5fTZ/dongothunder2026-02-28-19h47m15s805.png", "https://i.ibb.co/CsMK90nn/dongothunder2026-02-28-19h47m09s031.png", "https://i.ibb.co/4wTsfXNG/dongothunder2026-02-28-19h47m05s220.png", "https://i.ibb.co/YFrSZdJD/dongothunder2026-02-28-19h47m03s633.png", "https://i.ibb.co/VcLgW0Z4/dongothunder2026-02-28-19h47m00s439.png", "https://i.ibb.co/2Y6fJQ1j/dongothunder2026-02-28-19h46m57s255.png", "https://i.ibb.co/9myNfNss/dongothunder2026-02-28-19h46m55s678.png", "https://i.ibb.co/PZJZ2dwK/dongothunder2026-02-28-19h46m54s498.png", "https://i.ibb.co/RpRhR5h9/dongothunder2026-02-28-19h46m53s519.png", "https://i.ibb.co/y3dLdpC/dongothunder2026-02-28-19h46m52s490.png", "https://i.ibb.co/v6hsKCry/dongothunder2026-02-28-19h46m51s286.png", "https://i.ibb.co/27CB3qBp/dongothunder2026-02-28-19h46m23s241.png", "https://i.ibb.co/4gfGKpgp/dongothunder2026-02-28-19h46m18s206.png", "https://i.ibb.co/ymY1BRvj/dongothunder2026-02-28-19h46m16s288.png", "https://i.ibb.co/zTK0Nyq6/dongothunder2026-02-28-19h46m14s925.png", "https://i.ibb.co/9m9CLWvn/dongothunder2026-02-28-19h46m12s956.png", "https://i.ibb.co/0pfdxJsk/dongothunder2026-02-28-19h46m09s846.png", "https://i.ibb.co/R8X5J2w/dongothunder2026-02-28-19h46m08s223.png", "https://i.ibb.co/Xxppyx3J/dongothunder2026-02-28-19h46m06s957.png", "https://i.ibb.co/Xf8h8nnc/dongothunder2026-02-28-19h46m04s905.png", "https://i.ibb.co/4RSbLfbx/dongothunder2026-02-28-19h46m00s819.png", "https://i.ibb.co/jPhLB4Kx/dongothunder2026-02-28-19h45m59s185.png", "https://i.ibb.co/XxTncMqs/dongothunder2026-02-28-19h45m57s562.png", "https://i.ibb.co/H00vtXG/dongothunder2026-02-28-19h45m54s658.png", "https://i.ibb.co/GvSDfsby/dongothunder2026-02-28-19h45m46s171.png", "https://i.ibb.co/5gqvpjBd/dongothunder2026-02-28-19h45m45s262.png", "https://i.ibb.co/jPc3bD5V/dongothunder2026-02-28-19h45m34s153.png", "https://i.ibb.co/216TLCP0/dongothunder2026-02-28-19h45m32s025.png", "https://i.ibb.co/r2qLfY08/dongothunder2026-02-28-19h45m20s185.png", "https://i.ibb.co/hJ8NyJw3/dongothunder2026-02-28-19h45m18s579.png", "https://i.ibb.co/NdH98BHK/dongothunder2026-02-28-19h45m15s759.png", "https://i.ibb.co/PGDcpM7y/dongothunder2026-02-28-19h45m10s993.png", "https://i.ibb.co/WvTmsQRp/dongothunder2026-02-28-19h44m57s427.png", "https://i.ibb.co/TxDQsSwb/dongothunder2026-02-28-19h44m56s211.png", "https://i.ibb.co/V051ckNK/dongothunder2026-02-28-19h44m55s118.png", "https://i.ibb.co/4Z2YnzHP/dongothunder2026-02-28-19h44m52s854.png", "https://i.ibb.co/ZpDKv9nT/dongothunder2026-02-28-19h44m50s972.png", "https://i.ibb.co/cXJ2vXYK/dongothunder2026-02-28-19h44m49s561.png", "https://i.ibb.co/4HDBT6y/dongothunder2026-02-28-19h44m47s904.png", "https://i.ibb.co/p6QPMdFx/dongothunder2026-02-28-19h44m46s159.png", "https://i.ibb.co/4rt95hr/dongothunder2026-02-28-19h44m45s025.png", "https://i.ibb.co/v4t31fJC/dongothunder2026-02-28-19h44m43s588.png", "https://i.ibb.co/LdLLfP5Y/dongothunder2026-02-28-19h44m41s761.png", "https://i.ibb.co/YBTw1b4t/dongothunder2026-02-28-19h44m40s138.png", "https://i.ibb.co/zHX3wBzD/dongothunder2026-02-28-19h44m38s145.png", "https://i.ibb.co/HLC9XBVg/dongothunder2026-02-28-19h44m36s975.png", "https://i.ibb.co/v692czsz/dongothunder2026-02-28-19h44m35s129.png", "https://i.ibb.co/gZYp0tsv/dongothunder2026-02-28-19h44m33s868.png", "https://i.ibb.co/TBgh2z43/dongothunder2026-02-28-19h44m32s705.png", "https://i.ibb.co/hRGsbdsF/dongothunder2026-02-28-19h44m31s014.png", "https://i.ibb.co/0VFsqJ4r/dongothunder2026-02-28-19h44m24s768.png", "https://i.ibb.co/hR2dT49d/dongothunder2026-02-28-19h44m22s189.png", "https://i.ibb.co/M5yHG5wM/dongothunder2026-02-28-19h44m09s790.png", "https://i.ibb.co/XfSwfhqc/dongothunder2026-02-28-19h43m59s303.png", "https://i.ibb.co/4Rvqbqgv/dongothunder2026-02-28-19h43m55s329.png", "https://i.ibb.co/xq9PmSgs/dongothunder2026-02-28-19h43m30s767.png", "https://i.ibb.co/3YRzDMpT/dongothunder2026-02-28-19h43m29s491.png", "https://i.ibb.co/whq3X3qd/dongothunder2026-02-28-19h43m25s285.png", "https://i.ibb.co/nMVJYy5w/dongothunder2026-02-28-19h43m22s387.png", "https://i.ibb.co/bjYnSmYC/dongothunder2026-02-28-19h43m20s846.png", "https://i.ibb.co/mC2QQJsT/dongothunder2026-02-28-19h43m19s642.png", "https://i.ibb.co/pvvyz4vT/dongothunder2026-02-28-19h43m17s656.png", "https://i.ibb.co/hJjLyKHb/dongothunder2026-02-28-19h43m15s609.png", "https://i.ibb.co/G39Sr5kr/dongothunder2026-02-28-19h43m12s705.png", "https://i.ibb.co/whK93Rmh/dongothunder2026-02-28-19h43m10s585.png", "https://i.ibb.co/DHPKBJbK/dongothunder2026-02-28-19h43m09s444.png", "https://i.ibb.co/ZzbWMJvH/dongothunder2026-02-28-19h43m06s268.png", "https://i.ibb.co/MkjqNSH4/dongothunder2026-02-28-19h43m01s619.png", "https://i.ibb.co/0j7k5g6L/dongothunder2026-02-28-19h43m04s082.png" 
+];
+
+const gallery = document.getElementById("gallery");
+const btn = document.getElementById("loadMoreBtn");
+const counter = document.getElementById("counterStatus");
+const endMsg = document.getElementById("endMessage");
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const closeBtn = document.getElementById("closeBtn");
+
+let index = 0;
+const batch = 5;
+
+function updateStatus(){
+  counter.innerText = `Loaded ${index} / ${images.length} photos`;
+  if(index >= images.length){
+    btn.style.display="none";
+    endMsg.innerText="All moments captured ❤️";
+  }
+}
+
+function loadImages(){
+  const next = images.slice(index, index + batch);
+  next.forEach(src=>{
+    const img=document.createElement("img");
+    img.src=src;
+    img.onclick=()=>{
+      lightbox.style.display="flex";
+      lightboxImg.src=src;
+    };
+    gallery.appendChild(img);
+  });
+  index += next.length;
+  updateStatus();
+}
+
+btn.onclick = loadImages;
+
+/* lightbox close */
+closeBtn.onclick = ()=> lightbox.style.display="none";
+lightbox.onclick = (e)=>{
+  if(e.target===lightbox) lightbox.style.display="none";
+};
+
+document.addEventListener("keydown",(e)=>{
+  if(e.key==="Escape") lightbox.style.display="none";
+});
+
+/* init */
+loadImages();
+
+</script>
+
+</body>
+</html>
